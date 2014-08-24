@@ -1,3 +1,4 @@
+common-components/git_config
 common-components/bash-shebang
 common-components/header
 common-components/exit-trap
