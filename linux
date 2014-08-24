@@ -190,7 +190,8 @@ fancy_echo "Installing your personal additions from ~/.laptop.local ..."
 
 git config --global push.default simple
 git config --global user.name "Jon Medding"
-git config --global user.email "jonmedding@gmail.com"### end common-components/git_config
+git config --global user.email "jonmedding@gmail.com"
+### end common-components/git_config
 
 fancy_echo "Installing Dropbox ..."﻿
   if [[ ! -d "$HOME/.dropbox/" ]]; then
