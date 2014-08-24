@@ -1,4 +1,3 @@
-common-components/git_config
 common-components/bash-shebang
 common-components/header
 common-components/exit-trap
@@ -17,6 +16,7 @@ common-components/default-gems
 linux-components/github
 linux-components/rcm
 common-components/personal-additions
+common-components/git_config
 linux-components/dropbox
 linux-components/sublime-text-3
 linux-components/docker

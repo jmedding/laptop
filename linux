@@ -188,6 +188,10 @@ fancy_echo "Installing your personal additions from ~/.laptop.local ..."
   fi
 ### end common-components/personal-additions
 
+git config --global push.default simple
+git config --global user.name "Jon Medding"
+git config --global user.email "jonmedding@gmail.com"### end common-components/git_config
+
 fancy_echo "Installing Dropbox ..."﻿
   if [[ ! -d "$HOME/.dropbox/" ]]; then
     cd ~ && wget -O /tmp/dropbox "https://www.dropbox.com/download?plat=lnx.x86_64" 
