@@ -1,0 +1,14 @@
+fancy_echo "Installing Docker ..."﻿
+
+  curl -sSL https://get.docker.io/ubuntu/ | sudo sh
+
+  # Install Fig
+
+  # sudo sh -c "echo curl -L https://github.com/docker/fig/releases/download/0.5.2/linux > /usr/local/bin/fig"
+  # sudo chmod +x /usr/local/bin/fig
+
+
+  sudo apt-get install -y python-dev
+  sudo apt-get install -y python-pip
+  sudo sh -c "pip install -U fig"
+  

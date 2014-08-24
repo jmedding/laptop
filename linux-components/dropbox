@@ -1,0 +1,7 @@
+fancy_echo "Installing Dropbox ..."﻿
+  if [[ ! -d "$HOME/.dropbox/" ]]; then
+    cd ~ && wget -O /tmp/dropbox "https://www.dropbox.com/download?plat=lnx.x86_64" 
+    tar xzf /tmp/dropbox
+    rm -f /tmp/dropbox  
+    ~/.dropbox-dist/dropboxd &
+  fi

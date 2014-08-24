@@ -1,0 +1,21 @@
+fancy_echo "Installing Sublime Text 3 ..."﻿
+  if [[ ! -d "$HOME/.config/sublime-text-3/" ]]; then
+    sudo add-apt-repository ppa:webupd8team/sublime-text-3 
+    sudo aptitude update
+    sudo aptitude install -y sublime-text-installer
+
+    # Open and Close sublime-text to create the .config directories needed below
+    /opt/sublime_text/sublime_text %F
+    pkill sublime_text
+ 
+    # Install Package Control
+    cd ~/.config/sublime-text-3/Installed\ Packages/
+    git clone git://github.com/wbond/sublime_package_control.git Package\ Control
+    cd Package\ Control
+    #git checkout python3
+
+    # Sync packages and preferences to Dropbox
+    cd ~/.config/sublime-text-3/Packages/
+    rm -r User
+    ln -s ~/Dropbox/sublime-text-3/Packages/User
+  fi

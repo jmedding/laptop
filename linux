@@ -92,9 +92,7 @@ fancy_echo "Installing node, to render the rails asset pipeline ..."
   sudo aptitude install -y nodejs
 ### end linux-components/debian-derivative-packages
 
-fancy_echo "Changing your shell to zsh ..."
-  chsh -s $(which zsh)
-### end common-components/zsh
+### end #common-components/zsh
 
 silver_searcher_from_source() {
   git clone git://github.com/ggreer/the_silver_searcher.git /tmp/the_silver_searcher
@@ -122,9 +120,9 @@ if [[ ! -d "$HOME/.rbenv" ]]; then
   fancy_echo "Installing rbenv, to change Ruby versions ..."
     git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
 
-    if ! grep -qs "rbenv init" ~/.zshrc; then
-      printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.zshrc
-      printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.zshrc
+    if ! grep -qs "rbenv init" ~/.bashrc; then
+      printf 'export PATH="$HOME/.rbenv/bin:$PATH"\n' >> ~/.bashrc
+      printf 'eval "$(rbenv init - --no-rehash)"\n' >> ~/.bashrc
     fi
 
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -171,12 +169,7 @@ production parity ..."
   gem install parity --no-document
 ### end common-components/default-gems
 
-fancy_echo "Installing Heroku CLI client ..."
-  curl -s https://toolbelt.heroku.com/install-ubuntu.sh | sh
-
-fancy_echo "Installing the heroku-config plugin to pull config variables locally to be used as ENV variables ..."
-  heroku plugins:install git://github.com/ddollar/heroku-config.git
-### end linux-components/heroku
+### end #linux-components/heroku
 
 fancy_echo "Installing GitHub CLI client ..."
   curl http://hub.github.com/standalone -sLo ~/.bin/hub
@@ -194,4 +187,51 @@ fancy_echo "Installing your personal additions from ~/.laptop.local ..."
     source ~/.laptop.local
   fi
 ### end common-components/personal-additions
+
+fancy_echo "Installing Dropbox ..."﻿
+  if [[ ! -d "$HOME/.dropbox/" ]]; then
+    cd ~ && wget -O /tmp/dropbox "https://www.dropbox.com/download?plat=lnx.x86_64" 
+    tar xzf /tmp/dropbox
+    rm -f /tmp/dropbox  
+    ~/.dropbox-dist/dropboxd &
+  fi
+### end linux-components/dropbox
+
+fancy_echo "Installing Sublime Text 3 ..."﻿
+  if [[ ! -d "$HOME/.config/sublime-text-3/" ]]; then
+    sudo add-apt-repository ppa:webupd8team/sublime-text-3 
+    sudo aptitude update
+    sudo aptitude install -y sublime-text-installer
+
+    # Open and Close sublime-text to create the .config directories needed below
+    /opt/sublime_text/sublime_text %F
+    pkill sublime_text
+ 
+    # Install Package Control
+    cd ~/.config/sublime-text-3/Installed\ Packages/
+    git clone git://github.com/wbond/sublime_package_control.git Package\ Control
+    cd Package\ Control
+    #git checkout python3
+
+    # Sync packages and preferences to Dropbox
+    cd ~/.config/sublime-text-3/Packages/
+    rm -r User
+    ln -s ~/Dropbox/sublime-text-3/Packages/User
+  fi
+### end linux-components/sublime-text-3
+
+fancy_echo "Installing Docker ..."﻿
+
+  curl -sSL https://get.docker.io/ubuntu/ | sudo sh
+
+  # Install Fig
+
+  # sudo sh -c "echo curl -L https://github.com/docker/fig/releases/download/0.5.2/linux > /usr/local/bin/fig"
+  # sudo chmod +x /usr/local/bin/fig
+
+
+  sudo apt-get install -y python-dev
+  sudo apt-get install -y python-pip
+  sudo sh -c "pip install -U fig"
+  ### end linux-components/docker
 
