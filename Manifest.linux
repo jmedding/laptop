@@ -17,6 +17,7 @@ linux-components/github
 linux-components/rcm
 common-components/personal-additions
 common-components/git_config
+linux-components/mercurial
 linux-components/dropbox
 linux-components/sublime-text-3
 linux-components/docker

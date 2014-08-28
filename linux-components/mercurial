@@ -1,0 +1,3 @@
+fancy_echo "Installing Mercurial ..."﻿
+  sudo apt-get -y install mercurial
+
