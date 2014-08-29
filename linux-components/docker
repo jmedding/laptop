@@ -11,4 +11,15 @@ fancy_echo "Installing Docker ..."﻿
   sudo apt-get install -y python-dev
   sudo apt-get install -y python-pip
   sudo sh -c "pip install -U fig"
+
+
+  #resolve fig startup error (from: https://github.com/docker/fig/issues/73)
+  if ! grep -qs "DOCKER_HOST" ~/.bashrc; then
+    printf 'export DOCKER_HOST=tcp://localhost:4243\n' >> ~/.bashrc
+  fi
+
+  if ! grep -qs "127.0.0.1:4243" /etc/default/docker; then
+    sudo sh -c "printf 'DOCKER_OPTS=\"-H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock\"\n' >> /etc/default/docker;"
+  fi
   
+  sudo restart docker
